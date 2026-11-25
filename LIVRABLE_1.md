@@ -8,9 +8,9 @@
 | Membre | Nom | GitHub |
 |---|---|---|
 | 1 | Sarragossa | KaissSarragossa |
-| 2 | Marius Bazile-Tremblay | [pseudo GitHub] |
+| 2 | Marius Bazile-Tremblay | Marius Bazile-Tremblay |
 
-Dépôt GitHub de l'équipe : [lien à insérer]
+Dépôt GitHub de l'équipe : https://github.com/KaissSarragossa/PPE_projet_final.git
 
 ## 2. Problème choisi et fonction du prototype
 
@@ -185,14 +185,6 @@ Chaque membre fait ses propres commits sur GitHub selon sa contribution.
 - **Livrable 3** : scénario principal complet, machine à états, gestion non bloquante, premier test complet.
 - **Livrable 4** : calibration finale, gestion d'erreurs, nettoyage du montage et du code, README, vidéo et journal de contribution.
 
-## 11. Points à valider
-
-- Modèle exact des matrices 8x8 (puce, protocole, alimentation 3,3 V ou 5 V).
-- Les modules de capteurs de lumière ont bien une sortie analogique (AO). Sinon, ajouter un diviseur de tension avec une résistance fixe.
-- Les buzzers sont bien **passifs** pour permettre la commande par PWM.
-- Confirmer auprès de l'enseignant que la complexité du projet est suffisante, et si l'écran OLED compte comme composant déjà vu en classe.
-- Brochage officiel de l'ABX00083 (numéros D et A).
-
-## 12. Utilisation de l'IA
+## 11. Utilisation de l'IA
 
 Un outil d'IA (Claude) a été utilisé pour proposer des idées de projet, structurer ce plan et relire l'attribution des broches. Chaque membre doit comprendre l'ensemble des choix. Cette section sera complétée dans le README final.
