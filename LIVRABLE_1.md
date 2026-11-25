@@ -22,7 +22,7 @@ Dépôt GitHub de l'équipe : https://github.com/KaissSarragossa/PPE_projet_fina
 
 1. **Attente.** L'écran affiche « Couvrez votre capteur ». Chaque joueur couvre son capteur de lumière avec la main pour indiquer qu'il est prêt.
 2. **Départ.** Quand les deux capteurs restent couverts pendant 1 seconde, le feu passe au rouge.
-3. **Suspense.** Le feu passe ensuite au jaune pendant un délai aléatoire (selon la difficulté), puis au vert.
+3. **Suspense.** Le feu passe ensuite au jaune pendant un délai aléatoire, puis au vert.
 4. **Manche.** Au vert, le premier joueur qui appuie sur son bouton gagne la manche : sa matrice 8x8 gagne une colonne, son buzzer joue sa tonalité, et l'écran affiche son temps de réaction.
 5. **Victoire.** Le premier joueur qui remplit les 8 colonnes de sa matrice gagne la partie (animation et mélodie). Un appui long sur BTN_3 relance une partie.
 
@@ -30,13 +30,6 @@ Dépôt GitHub de l'équipe : https://github.com/KaissSarragossa/PPE_projet_fina
 
 - **Faux départ** : appuyer sur son bouton ou lever la main du capteur pendant le rouge ou le jaune fait perdre la manche (l'adversaire gagne une colonne). Si les deux trichent en même temps, la manche est rejouée.
 - **Manche annulée** : si personne n'appuie dans les 3 secondes après le vert, la manche est annulée.
-- **Difficulté** : un appui court sur BTN_3 change le niveau (valeurs préliminaires, à ajuster lors des tests).
-
-| Niveau | Délai aléatoire avant le vert |
-|---|---|
-| Facile | 2 à 5 s |
-| Normal | 1 à 6 s |
-| Difficile | 0,5 à 7 s |
 
 ## 3. Diagramme fonctionnel
 
@@ -47,7 +40,7 @@ flowchart LR
     L2["Capteur de lumière J2 (analogique)"]
     B1["Bouton BTN_1 J1 (numérique)"]
     B2["Bouton BTN_2 J2 (numérique)"]
-    B3["Bouton BTN_3 difficulté et reset (numérique)"]
+    B3["Bouton BTN_3 reset (numérique)"]
   end
   subgraph MCU["Arduino Nano ESP32 - MicroPython"]
     CAL["Calibration, filtrage et seuils avec hystérésis"]
@@ -110,11 +103,11 @@ stateDiagram-v2
 |---|---|---|---|
 | Arduino Nano ESP32 (ABX00083) | 1 | Cerveau du système, MicroPython | Plateforme |
 | Capteur de lumière (sortie analogique AO) | 2 | Présence du joueur : capteur couvert = prêt, main maintenue jusqu'au vert | Entrée **analogique** |
-| Bouton poussoir | 3 | BTN_1 et BTN_2 : réponse des joueurs. BTN_3 : difficulté et réinitialisation | Entrée **numérique** |
+| Bouton poussoir | 3 | BTN_1 et BTN_2 : réponse des joueurs. BTN_3 : réinitialisation | Entrée **numérique** |
 | Feu tricolore (3 DEL rouge, jaune, verte) | 1 | Signal de départ | Sortie **numérique** (marche/arrêt) |
 | Buzzer **passif** | 2 | Une tonalité par joueur, sons de victoire | Sortie **PWM** |
 | Matrice LED 8x8 (2 fils, modèle à confirmer) | 2 | Progression de chaque joueur, une colonne par manche gagnée | **Composant nouveau** |
-| Écran OLED 128x32 (I2C) | 1 | Scores, messages, difficulté, erreurs | Composant d'affichage |
+| Écran OLED 128x32 (I2C) | 1 | Scores, messages, erreurs | Composant d'affichage |
 | Résistances de limitation pour les DEL | 3 | Protection des DEL du feu | Passif |
 
 ## 6. Attribution préliminaire des broches
@@ -165,7 +158,7 @@ Les numéros de broches sont ceux du format Nano. Ils seront confirmés avec la 
 | Deux états ou modes | Attente, rouge, jaune, vert, résultat, victoire, erreur |
 | Traitement ou calibration | Calibration, filtrage, hystérésis |
 | Gestion d'erreurs | Voir section 7 |
-| Interaction locale | Capteurs de lumière pour démarrer, BTN_3 pour la difficulté |
+| Interaction locale | Capteurs de lumière pour démarrer |
 | Au moins deux formes de rétroaction | Lumière (feu, matrices), son (buzzers), affichage (écran) |
 | Fonctionnement autonome | Aucune intervention dans le code après le démarrage |
 
